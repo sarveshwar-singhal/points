@@ -1,4 +1,5 @@
 #Points
+
 ###Documentation for Backend Webservice
 
 1. Background
@@ -10,6 +11,7 @@
 7. Future work
 
 ##Background / Problem Statement
+
 Users have points in their account. They only see a single balance in their account. But for reporting purposes we actually track their points per payer/partner in our system. In our system each transaction record contains payer(string), points(integer) and timestamps(date).
 
 For earning points it is easy to assign a payer, we know which actions earned the points. And thus which partner should be paying for the points.
