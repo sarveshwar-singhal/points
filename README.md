@@ -105,6 +105,8 @@ Linux
 ```
 python3 -m venv env_name
 ```
+The above command may throw error in Debian/Ubuntu system: 'ensurepip is not available'.
+use the following command ```apt install python3.8-venv```. You may need to use ```sudo``` with the previous command. Once this is installed again run the above command to create the virtual environment.
 
 4. Activate the environment
 
