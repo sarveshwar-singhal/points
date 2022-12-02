@@ -122,19 +122,21 @@ Once the environment is activated user should see something like this in shell
 Windows: (env_name) PS>
 
 Linux: (env_name) $
+
 5. Install the dependencies
-6. ```
-   pip install -r requirements.txt 
-   ```
+
+6. ```pip install -r requirements.txt```
+
 7. Check if all the requirements are installed successfully
 
 ###Start Server
 By default the application will run on 127.0.0.1 and port 5000.
 If user wants to change the default port, they can update the ConfigFile.properties file and update PORT variable.
-```
-[Windows] python server.py
+
+```[Windows] python server.py
 [Linux] python3 server.py
 ```
+
 This should start the server which is open to accept HTTP request and provide appropriate responses.
 
 
