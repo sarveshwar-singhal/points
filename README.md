@@ -83,8 +83,9 @@ The `RESET` end point is used for clearing user points data without the need of 
 
 
 ** In case of any issues with end points, Please refer to config file for latest end points.
-##How To Run
-###Pre-installed
+
+## How To Run
+### Pre-installed
 * Python3.7 or higher
 
 ### Setup
@@ -143,14 +144,14 @@ If user wants to change the default port, they can update the ConfigFile.propert
 This should start the server which is open to accept HTTP request and provide appropriate responses.
 
 
-### How To Test
+## How To Test
 The code can be tested in following ways: 
 1. Using Postman software for API querying
 2. Using test.py script
 
 Refer to file `how_to_test.pdf` for instructions.
 
-### Requests
+## Requests
 #### Bad Request Scenarios
 1. If an add request comes with zero points. [logic: it is expected, before calling the service, user should already validate points]
 2. A payer e.g. "DANNON" has balance 500, and user wants to send add request with points -600, this request won't be accepted. (irrespective of total available points). An individual payer balance can not go in negative.
