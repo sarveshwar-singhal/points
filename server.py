@@ -97,9 +97,9 @@ def redeem_points():
         if request.is_json:
             requirement = request.json
             status = config.get(HTTP_STATUS_CODES, 'OK')
-            if requirement['points'] > DATA_LL.total_points:
+            if requirement['points'] <= 0 or requirement['points'] > DATA_LL.total_points:
                 outcome.clear()
-                outcome['error'] = 'insufficient balance'
+                outcome['error'] = "insufficient balance or redeem points can not be zero or negative"
             else:
                 deduct_info = DATA_LL.spend(requirement['points'])
                 #formatting the output as per the API call requirement
