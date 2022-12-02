@@ -1,6 +1,7 @@
-#Points
+# Points
 
-###Documentation for Backend Webservice
+
+### Documentation for Backend Webservice
 
 1. Background
 2. Introduction
@@ -10,7 +11,7 @@
 6. Requests
 7. Future work
 
-##Background / Problem Statement
+## Background / Problem Statement
 
 Users have points in their account. They only see a single balance in their account. But for reporting purposes we actually track their points per payer/partner in our system. In our system each transaction record contains payer(string), points(integer) and timestamps(date).
 
@@ -24,7 +25,7 @@ There are two rules for determining what points to "spend" first:
 
 ● We want no payer's points to go negative.
 
-##Introduction
+## Introduction
 
 This project uses `python` to perform server side operations and `flask` framework to build and host server which can cater to various types of API requests.
 
@@ -41,9 +42,9 @@ This file is only for operations related to User Points.
 
 **In future when project expands, `server.py` can be separated into two different files, one for starting app, threading, db connection and another file for API request handling (or views).
 
-##API
+## API
  
-####1. [POST] /api/v1/add
+#### 1. [POST] /api/v1/add
 The `ADD_POINTS` end point is used for adding user points. This API accepts only `POST` requests in form of json.
 * url: `http://127.0.0.1:5000/api/v1/add`
 * data(in json format): `{"payer": "DANNON", "points": 300, "timestamp": "2022-10-31T10:00:00Z"}`
@@ -51,7 +52,7 @@ The `ADD_POINTS` end point is used for adding user points. This API accepts only
 * Error handling: (1) If the request is not in json format (2) the data contains in request doesn't have proper keys. The keys should exactly match above-mentioned keys. (3) Any internal server error caused due to any other reasons.
 * The web service returns appropriate HTTP status codes.
 
-####2. [GET] /api/v1/balance
+#### 2. [GET] /api/v1/balance
 The `BALANCE_CHECK` end point is used for retrieving latest balance. This API accepts only `GET` requests.
 * url: `http://127.0.0.1:5000/api/v1/balance`
 * data(in json format): no input data expected
@@ -59,7 +60,7 @@ The `BALANCE_CHECK` end point is used for retrieving latest balance. This API ac
 * Error handling: (1) Any internal server error caused due to any other reasons.
 * The web service returns appropriate HTTP status codes.
 
-####3. [POST] /api/v1/redeem
+#### 3. [POST] /api/v1/redeem
 The `REDEEM_POINTS` end point is used for spending user points. This API accepts only `POST` requests in form of json.
 * url: `http://127.0.0.1:5000/api/v1/redeem`
 * data(in json format): `{"points": 5000 }`
@@ -71,7 +72,7 @@ The `REDEEM_POINTS` end point is used for spending user points. This API accepts
 * Error handling: (1) If the request is not in json format (2) If the user doesn't have sufficient points to redeem (3) the data contains in request doesn't have proper keys. The keys should exactly match above-mentioned key in request. (4) Any internal server error caused due to any other reasons.
 * The web service returns appropriate HTTP status codes.
 
-####4. [GET] /api/v1/reset
+#### 4. [GET] /api/v1/reset
 **This api is still in development.
 
 The `RESET` end point is used for clearing user points data without the need of restarting the server. For now this API accepts only `GET`.
@@ -86,7 +87,7 @@ The `RESET` end point is used for clearing user points data without the need of 
 ###Pre-installed
 * Python3.7 or higher
 
-###Setup
+### Setup
 1. Clone the code base in your local machine.
 2. Navigate inside the code base directory.
 3. Create a virtual environment
@@ -131,7 +132,7 @@ Linux: (env_name) $
 
 7. Check if all the requirements are installed successfully
 
-###Start Server
+### Start Server
 By default the application will run on 127.0.0.1 and port 5000.
 If user wants to change the default port, they can update the ConfigFile.properties file and update PORT variable.
 
@@ -142,22 +143,22 @@ If user wants to change the default port, they can update the ConfigFile.propert
 This should start the server which is open to accept HTTP request and provide appropriate responses.
 
 
-###How To Test
+### How To Test
 The code can be tested in following ways: 
 1. Using Postman software for API querying
 2. Using test.py script
 
 Refer to file `how_to_test.pdf` for instructions.
 
-###Requests
-####Bad Request Scenarios
+### Requests
+#### Bad Request Scenarios
 1. If an add request comes with zero points. [logic: it is expected, before calling the service, user should already validate points]
 2. A payer e.g. "DANNON" has balance 500, and user wants to send add request with points -600, this request won't be accepted. (irrespective of total available points). An individual payer balance can not go in negative.
 3. Total available points 1000 (DANNON: 500, MILLER COORS: 500), a redeem request of points > 1000 is received, it will be rejected (as total points can not go in negative). But if redeem request comes with 600 or 800 or points <= 1000, will be processed.
 
 
 **Present code handles additional Bad request scenarios, which are not mentioned above. To be updated soon.
-##Future Work
+## Future Work
 1. More loggers can be added to track the code performance.
 2. Existing API end points can be enhanced to make them more robust, although the current end points handle good amount of ambiguity.
 3. Add authentication in HTTP headers.
